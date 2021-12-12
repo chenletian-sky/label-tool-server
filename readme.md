@@ -51,3 +51,9 @@ app.use(cors());
 
 ```
 
+
+
+# apidoc 说明
+根目录下运行 apidoc -i routes/ -o public/apidoc/
+可得到说明文档 访问说明文档 /apidoc
+

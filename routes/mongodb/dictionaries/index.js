@@ -8,6 +8,34 @@ router.get('/', function (req, res, next) {
   res.send('dictionaries测试用')
 });
 
+/**
+ * @api {post} /mongo/dictionaries/upload 上传字典数据
+ * @apiGroup dictionaries
+ * @apiDescription 上传字典数据
+ *
+ * @apiBody {Object} [data] 字典数据
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 描述信息
+ * @apiSuccess {Object} data 返回数据
+ * @apiSuccessExample  {json} success-example
+ * {
+ *   status:200,
+ *   message:"",
+ *   data:[]
+ * }
+ *
+ * @apiError {Number} status 状态码
+ * @apiError {String} message 错误信息
+ * @apiError {Object} data 返回数据
+ * @apiErrorExample  {json} error-example
+ * {
+ *   status:404,
+ *   message:"",
+ *   data:[]
+ * }
+ */
+
 router.post('/upload',(req, res) => {
   // req.session.name
   const { body:data } = req;
@@ -28,6 +56,33 @@ router.post('/upload',(req, res) => {
     });
   })
 })
+
+/**
+ * @api {get} /mongo/dictionaries/all 获取全部字典数据
+ * @apiGroup dictionaries
+ * @apiDescription 获取全部字典数据
+ *
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 描述信息
+ * @apiSuccess {Object} data 返回数据
+ * @apiSuccessExample  {json} success-example
+ * {
+ *   status:200,
+ *   message:"",
+ *   data:[]
+ * }
+ *
+ * @apiError {Number} status 状态码
+ * @apiError {String} message 错误信息
+ * @apiError {Object} data 返回数据
+ * @apiErrorExample  {json} error-example
+ * {
+ *   status:404,
+ *   message:"",
+ *   data:[]
+ * }
+ */
 
 router.get('/all',(req,res,next) => {
   dictionaryModel.findOne({
@@ -53,6 +108,35 @@ router.get('/all',(req,res,next) => {
 })
 
 /**
+ * @api {post} /mongo/dictionaries/insert 插入字典数据
+ * @apiGroup dictionaries
+ * @apiDescription 插入字典数据
+ *
+ * @apiBody {String} [key] 字典索引
+ * @apiBody {Object} [data] 字典数据
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 描述信息
+ * @apiSuccess {Object} data 返回数据
+ * @apiSuccessExample  {json} success-example
+ * {
+ *   status:200,
+ *   message:"",
+ *   data:[]
+ * }
+ *
+ * @apiError {Number} status 状态码
+ * @apiError {String} message 错误信息
+ * @apiError {Object} data 返回数据
+ * @apiErrorExample  {json} error-example
+ * {
+ *   status:404,
+ *   message:"",
+ *   data:[]
+ * }
+ */
+
+/**
  * {
     "key":"1213",
     "data":
@@ -66,15 +150,6 @@ router.get('/all',(req,res,next) => {
  */
 
 router.post('/insert',(req,res,next) => {
-  // 传入的参数
-  
-  /**
-   * {
-   *  key: " ",
-   *  data: 数据
-   * }
-   */
-
   const { body:data} = req
   dictionaryModel.findOneAndUpdate({
     userEmail:"12345678@qq.com"
@@ -99,6 +174,35 @@ router.post('/insert',(req,res,next) => {
     })
   })
 })
+
+/**
+ * @api {delete} /mongo/dictionaries/delete 删除字典数据
+ * @apiGroup dictionaries
+ * @apiDescription 根据传入的 dictKey(字典索引) dataKey(数据索引) 删除指定的字典数据
+ *
+ * @apiBody {String} [dictKey] 字典索引
+ * @apiBody {String} [datakey] 数据索引
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 描述信息
+ * @apiSuccess {Object} data 返回数据
+ * @apiSuccessExample  {json} success-example
+ * {
+ *   status:200,
+ *   message:"",
+ *   data:[]
+ * }
+ *
+ * @apiError {Number} status 状态码
+ * @apiError {String} message 错误信息
+ * @apiError {Object} data 返回数据
+ * @apiErrorExample  {json} error-example
+ * {
+ *   status:404,
+ *   message:"",
+ *   data:[]
+ * }
+ */
 
 /**
  * {
@@ -142,6 +246,36 @@ router.delete('/delete',(req,res,next) => {
   })
 
 })
+
+/**
+ * @api {post} /mongo/dictionaries/update 更新字典数据
+ * @apiGroup dictionaries
+ * @apiDescription 更新字典数据
+ *
+ * @apiBody {Object} [dictKey] 字典索引
+ * @apiBody {Object} [dataKey] 数据索引
+ * @apiBody {Object} [data] 待更新的字典数据
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 描述信息
+ * @apiSuccess {Object} data 返回数据
+ * @apiSuccessExample  {json} success-example
+ * {
+ *   status:200,
+ *   message:"",
+ *   data:[]
+ * }
+ *
+ * @apiError {Number} status 状态码
+ * @apiError {String} message 错误信息
+ * @apiError {Object} data 返回数据
+ * @apiErrorExample  {json} error-example
+ * {
+ *   status:404,
+ *   message:"",
+ *   data:[]
+ * }
+ */
 
 /**
  * {

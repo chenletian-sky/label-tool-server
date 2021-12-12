@@ -7,7 +7,7 @@ const logger = require('morgan');
 const cors = require('cors');
 // 引入 session
 const session = require("express-session")
-const bodyParser=require('body-parser');
+const bodyParser=require('body-parser')
 
 
 
@@ -95,8 +95,10 @@ app.use(logger('dev'));
 
 
 app.use(cookieParser());
+
+app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static(path.join(__dirname, 'public')));
-app.use('/public',express.static('public'));
+// app.use('/public',express.static('public'));
 // 初始化 session
 app.use(session({ // 配置参数
   secret: 'secret', // 加密口令
@@ -168,6 +170,7 @@ app.use('/get_scatterData',getScatterDataRouter)
 app.use('/get_wordCloudData',getWordCloudRouter)
 
 app.use('/mongo',mongodbRouter)
+
 
 
 

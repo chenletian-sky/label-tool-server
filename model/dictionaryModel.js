@@ -4,7 +4,7 @@ const dictionarySchema = new mongoose.Schema({
   userEmail: String,
   dictionaries: 
     [{
-      // 每个字典独有的key
+      // 每个字典独有的key 类别
       key:{type:String,unique:true},
       dictionaryName:String,
       dictionaryDescribe:String,

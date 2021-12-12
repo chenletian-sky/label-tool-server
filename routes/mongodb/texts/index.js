@@ -7,6 +7,34 @@ router.get('/', function (req, res, next) {
   res.send('texts测试用')
 });
 
+/**
+ * @api {post} /mongo/texts/upload 上传语料数据
+ * @apiGroup texts
+ * @apiDescription 上传语料数据
+ *
+ * @apiBody {Array} [Data] 语料数据
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 描述信息
+ * @apiSuccess {Object} data 返回数据
+ * @apiSuccessExample  {json} success-example
+ * {
+ *   status:200,
+ *   message:"上传语料数据成功",
+ *   data:[]
+ * }
+ *
+ * @apiError {Number} status 状态码
+ * @apiError {String} message 错误信息
+ * @apiError {Object} data 返回数据
+ * @apiErrorExample  {json} error-example
+ * {
+ *   status:404,
+ *   message:"上传语料数据失败",
+ *   data:[]
+ * }
+ */
+
 router.post('/upload',(req, res) => {
   // req.session.name
   const { body:data } = req;
@@ -27,6 +55,33 @@ router.post('/upload',(req, res) => {
     });
   })
 })
+
+/**
+ * @api {get} /mongo/texts/all 获取语料数据
+ * @apiGroup texts
+ * @apiDescription 获取全部语料数据
+ *
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 描述信息
+ * @apiSuccess {Object} data 返回数据
+ * @apiSuccessExample  {json} success-example
+ * {
+ *   status:200,
+ *   message:"获取语料数据成功",
+ *   data:[]
+ * }
+ *
+ * @apiError {Number} status 状态码
+ * @apiError {String} message 错误信息
+ * @apiError {Object} data 返回数据
+ * @apiErrorExample  {json} error-example
+ * {
+ *   status:404,
+ *   message:"获取语料数据失败",
+ *   data:[]
+ * }
+ */
 
 router.get('/all',(req,res,next) => {
   textsModel.findOne({
@@ -55,7 +110,7 @@ router.get('/all',(req,res,next) => {
 
 /**
  * @api {post} /mongo/texts/insert 插入语料数据
- * @apiGroup Mongo
+ * @apiGroup texts
  * @apiDescription 根据 key 在指定的语料数据集中插入新的语料数据 
  *
  * @apiParam {String} key 语料数据 key
@@ -121,7 +176,7 @@ router.post('/insert',(req,res,next) => {
 
 /**
  * @api {delete} /mongo/texts/delete 删除语料数据
- * @apiGroup Mongo
+ * @apiGroup texts
  * @apiDescription 根据 key 在指定的语料数据集中删除已有的语料数据 
  *
  * @apiParam {String} textKey 语料数据 key
@@ -190,8 +245,8 @@ router.delete('/delete',(req,res,next) => {
 })
 
 /**
- * @api {post}} /mongo/texts/update 更新语料数据
- * @apiGroup Mongo
+ * @api {post} /mongo/texts/update 更新语料数据
+ * @apiGroup texts
  * @apiDescription 根据 key 在指定的语料数据集中更新已有的语料数据 
  *
  * @apiParam {String} textKey 语料数据 key

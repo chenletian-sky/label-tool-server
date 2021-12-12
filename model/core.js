@@ -19,6 +19,7 @@ module.exports = mongoose
 /**
  * @api {方法} 路径 标题
  * @apiGroup Group
+ * @apiName apiName
  * @apiDescription 描述这个API的信息
  *
  * @apiParam {String} userName 用户名

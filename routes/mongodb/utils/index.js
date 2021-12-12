@@ -7,6 +7,35 @@ router.get('/', function (req, res, next) {
   res.send('utils测试用')
 });
 
+/**
+ * @api {post} /mongo/utils/dbDictSplit 初始化字典
+ * @apiGroup utils
+ * @apiDescription 根据 字典数据 初始化语料数据 得到初次标注后的数据
+ *
+ * @apiBody {String} [dictIndex]    字典数据的 index 
+ * @apiBody {String} [textsIndex]   语料数据的 index
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 描述信息
+ * @apiSuccess {Object} data 返回数据
+ * @apiSuccessExample  {json} success-example
+ * {
+ *   status:200,
+ *   message:"",
+ *   data:[]
+ * }
+ *
+ * @apiError {Number} status 状态码
+ * @apiError {String} message 错误信息
+ * @apiError {Object} data 返回数据
+ * @apiErrorExample  {json} error-example
+ * {
+ *   status:404,
+ *   message:"",
+ *   data:[]
+ * }
+ */
+
 router.post('/dbDictSplit', function (req, res, next) {
   // 1. 数据库名
   // 2. 字典的表名
@@ -39,6 +68,34 @@ router.post('/dbDictSplit', function (req, res, next) {
     }
   })
 });
+
+/**
+ * @api {post} /mongo/utils/jiaguTrainModel 训练数据
+ * @apiGroup utils
+ * @apiDescription 根据 语料数据 和 训练集数据 训练 得到模型训练后的数据
+ * 
+ * @apiBody {String} [textsKey]   语料数据的 key
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 描述信息
+ * @apiSuccess {Object} data 返回数据
+ * @apiSuccessExample  {json} success-example
+ * {
+ *   status:200,
+ *   message:"",
+ *   data:[]
+ * }
+ *
+ * @apiError {Number} status 状态码
+ * @apiError {String} message 错误信息
+ * @apiError {Object} data 返回数据
+ * @apiErrorExample  {json} error-example
+ * {
+ *   status:404,
+ *   message:"",
+ *   data:[]
+ * }
+ */
 
 router.post('/jiaguTrainModel', function (req, res, next) {
   // 1. 数据库名
@@ -75,6 +132,34 @@ router.post('/jiaguTrainModel', function (req, res, next) {
 
   // })
 });
+
+/**
+ * @api {post} /mongo/utils/dbSentenceVecScatter dec2Vec
+ * @apiGroup utils
+ * @apiDescription 语料数据 根据 dec2Vec 模型 得到 词云数据 散点图数据 
+ * 
+ * @apiBody {String} [textsKey]   语料数据的 key
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 描述信息
+ * @apiSuccess {Object} data 返回数据
+ * @apiSuccessExample  {json} success-example
+ * {
+ *   status:200,
+ *   message:"",
+ *   data:[]
+ * }
+ *
+ * @apiError {Number} status 状态码
+ * @apiError {String} message 错误信息
+ * @apiError {Object} data 返回数据
+ * @apiErrorExample  {json} error-example
+ * {
+ *   status:404,
+ *   message:"",
+ *   data:[]
+ * }
+ */
 
 router.post('/dbSentenceVecScatter', function (req, res, next) {
   // 1. 数据库名

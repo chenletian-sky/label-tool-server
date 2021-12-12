@@ -6,6 +6,33 @@ router.get('/',(req,res,next) => {
   res.send("label测试用")
 }) 
 
+/**
+ * @api {get} /mongo/label/all 获取全部的标签数据
+ * @apiGroup label
+ * @apiDescription 获取全部的标签数据
+ *
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 描述信息
+ * @apiSuccess {Object} data 返回数据
+ * @apiSuccessExample  {json} success-example
+ * {
+ *   status:200,
+ *   message:"",
+ *   data:[]
+ * }
+ *
+ * @apiError {Number} status 状态码
+ * @apiError {String} message 错误信息
+ * @apiError {Object} data 返回数据
+ * @apiErrorExample  {json} error-example
+ * {
+ *   status:404,
+ *   message:"",
+ *   data:[]
+ * }
+ */
+
 router.get('/all',(req,res,next) => {
   labelModel.find({}).then((result) => {
     res.send({
@@ -15,6 +42,36 @@ router.get('/all',(req,res,next) => {
     })
   })
 })
+
+/**
+ * @api {post} /mongo/label/insert 插入标签数据
+ * @apiGroup label
+ * @apiDescription 根据传入的标签数据更新标签
+ *
+ * @apiBody {String} [name]  标签的名称
+ * @apiBody {String} [color] 标签的颜色
+ * @apiBody {String} [key] 标签的键值
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 描述信息
+ * @apiSuccess {Object} data 返回数据
+ * @apiSuccessExample  {json} success-example
+ * {
+ *   status:200,
+ *   message:"",
+ *   data:[]
+ * }
+ *
+ * @apiError {Number} status 状态码
+ * @apiError {String} message 错误信息
+ * @apiError {Object} data 返回数据
+ * @apiErrorExample  {json} error-example
+ * {
+ *   status:404,
+ *   message:"",
+ *   data:[]
+ * }
+ */
 
 router.post('/insert',(req,res,next) => {
   const {body:data} = req
