@@ -1,0 +1,16 @@
+{
+  "name": "api-doc",
+  "version": "0.1.0",
+  "description": "这是语义化处理工具接口文档",
+  "title": "语义化处理工具接口文档",
+  "url" : "http://127.0.0.1:8080",
+  "sampleUrl" : "http://127.0.0.1:8080",
+  "header":{
+    "title":"文档说明",
+    "filename":"header.md"
+  },
+  "footer":{
+    "title":"文档结尾",
+    "filename":"footer.md"
+  }
+}
