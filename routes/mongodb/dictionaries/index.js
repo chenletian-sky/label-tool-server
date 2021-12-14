@@ -252,9 +252,9 @@ router.delete('/delete',(req,res,next) => {
  * @apiGroup dictionaries
  * @apiDescription 更新字典数据
  *
- * @apiBody {Object} [dictKey] 字典索引
- * @apiBody {Object} [dataKey] 数据索引
- * @apiBody {Object} [data] 待更新的字典数据
+ * @apiBody {String} dictKey 字典索引
+ * @apiBody {String} dataKey 数据索引
+ * @apiBody {Object} data 待更新的字典数据
  * 
  * @apiSuccess {Number} status 状态码
  * @apiSuccess {String} message 描述信息

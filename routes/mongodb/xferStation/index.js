@@ -46,7 +46,7 @@ router.get('/all',(req,res,next) => {
 })
 
 /**
- * @api {delete}} /mongo/xferStations/all 删除中转站数据
+ * @api {delete} /mongo/xferStations/all 删除中转站数据
  * @apiGroup xferStations
  * @apiDescription 删除中转站数据
  *

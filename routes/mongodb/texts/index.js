@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
  * @apiGroup texts
  * @apiDescription 上传语料数据
  *
- * @apiBody {Array} [Data] 语料数据
+ * @apiBody {Array} Data 语料数据
  * 
  * @apiSuccess {Number} status 状态码
  * @apiSuccess {String} message 描述信息
@@ -113,19 +113,8 @@ router.get('/all',(req,res,next) => {
  * @apiGroup texts
  * @apiDescription 根据 key 在指定的语料数据集中插入新的语料数据 
  *
- * @apiParam {String} key 语料数据 key
- * @apiParam {Object} data 要插入的语料数据
- * @apiParamExample {json} request-example
- *{
- *    "key":"1213",
- *    "data":
- *    {
- *        "name": "testtest",
- *        "label": "EQU",
- *        "key": "4m98m4cwuqy0000",
- *        "abbreviations": []
- *    }   
- *}
+ * @apiBody {String} key 语料数据 key
+ * @apiBody {Object} data 要插入的语料数据
  * 
  * @apiSuccess {Number} status 状态码
  * @apiSuccess {String} message 描述信息
@@ -150,13 +139,13 @@ router.get('/all',(req,res,next) => {
 
 router.post('/insert',(req,res,next) => {
   const { body:data} = req
-  dictionaryModel.findOneAndUpdate({
+  textsModel.findOneAndUpdate({
     userEmail:"12345678@qq.com"
     // "texts.key":data.key
   },
   {
     $push:{
-      "diction.$[i].data":data.data
+      "texts.$[i].data":data.data
     }
   },{
     arrayFilters:[
@@ -179,13 +168,8 @@ router.post('/insert',(req,res,next) => {
  * @apiGroup texts
  * @apiDescription 根据 key 在指定的语料数据集中删除已有的语料数据 
  *
- * @apiParam {String} textKey 语料数据 key
- * @apiParam {String} dataKey 数据索引 key
- * @apiParamExample {json} request-example
- *{
- *  "textKey":"12",
- *  "dataKey":"757zije6ct00000"
- *}
+ * @apiBody {String} textKey 语料数据 key
+ * @apiBody {String} dataKey 数据索引 key
  * 
  * @apiSuccess {Number} status 状态码
  * @apiSuccess {String} message 描述信息
@@ -249,20 +233,9 @@ router.delete('/delete',(req,res,next) => {
  * @apiGroup texts
  * @apiDescription 根据 key 在指定的语料数据集中更新已有的语料数据 
  *
- * @apiParam {String} textKey 语料数据 key
- * @apiParam {String} dataKey 数据索引 key
- * @apiParam {Object} data    更新的数据
- * @apiParamExample {json} request-example
- *{
- *   "textKey":"12",
- *   "dataKey":"757zije6ct00000",
- *   "data":{
- *         "key": "757zije6ct00000",
- *        "text": "test",
- *       "label": [],
- *       "textArr": []
- *}
- *}
+ * @apiBody {String} textKey 语料数据 key
+ * @apiBody {String} dataKey 数据索引 key
+ * @apiBody {Object} data    更新的数据
  * 
  * @apiSuccess {Number} status 状态码
  * @apiSuccess {String} message 描述信息
