@@ -8,6 +8,8 @@ const textsSchema = new mongoose.Schema({
       key:{type:String,unique:true},
       textsName:String,
       textsDescribe:String,
+      wordsNum:String,
+      textsContent:String,
       // 语料数据
       data:[{
         key: String, // index

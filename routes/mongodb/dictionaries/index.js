@@ -112,8 +112,8 @@ router.get('/all',(req,res,next) => {
  * @apiGroup dictionaries
  * @apiDescription 插入字典数据
  *
- * @apiBody {String} [key] 字典索引
- * @apiBody {Object} [data] 字典数据
+ * @apiBody {String} key 字典索引
+ * @apiBody {Object} data 字典数据
  * 
  * @apiSuccess {Number} status 状态码
  * @apiSuccess {String} message 描述信息
@@ -180,8 +180,8 @@ router.post('/insert',(req,res,next) => {
  * @apiGroup dictionaries
  * @apiDescription 根据传入的 dictKey(字典索引) dataKey(数据索引) 删除指定的字典数据
  *
- * @apiBody {String} [dictKey] 字典索引
- * @apiBody {String} [datakey] 数据索引
+ * @apiBody {String} dictKey 字典索引
+ * @apiBody {String} datakey 数据索引
  * 
  * @apiSuccess {Number} status 状态码
  * @apiSuccess {String} message 描述信息
@@ -238,6 +238,7 @@ router.delete('/delete',(req,res,next) => {
       ]
     }
   ).then((result) => {
+    console.log(result)
     res.send({
       status:200,
       message:"删除字典数据成功",

@@ -8,6 +8,8 @@ const dictionarySchema = new mongoose.Schema({
       key:{type:String,unique:true},
       dictionaryName:String,
       dictionaryDescribe:String,
+      wordsNum:String,
+      dictsContent:String,
       // 字典数据
       data:[{
         name: String,
