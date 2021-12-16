@@ -181,7 +181,7 @@ router.post('/insert',(req,res,next) => {
  * @apiDescription 根据传入的 dictKey(字典索引) dataKey(数据索引) 删除指定的字典数据
  *
  * @apiBody {String} dictKey 字典索引
- * @apiBody {String} datakey 数据索引
+ * @apiBody {String} dataKey 数据索引
  * 
  * @apiSuccess {Number} status 状态码
  * @apiSuccess {String} message 描述信息
