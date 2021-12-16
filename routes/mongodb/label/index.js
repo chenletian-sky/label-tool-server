@@ -46,7 +46,7 @@ router.get('/all',(req,res,next) => {
 /**
  * @api {post} /mongo/label/insert 插入标签数据
  * @apiGroup label
- * @apiDescription 根据传入的标签数据更新标签
+ * @apiDescription 根据传入的标签数据插入标签数据
  *
  * @apiBody {String} [name]  标签的名称
  * @apiBody {String} [color] 标签的颜色
@@ -98,6 +98,63 @@ router.post('/insert',(req,res,next) => {
         res.send(resData)
       })
     }
+  })
+})
+
+
+
+/**
+ * @api {post} /mongo/label/update 更新标签数据
+ * @apiGroup label
+ * @apiDescription 根据传入的标签数据更新标签数据
+ *
+ * @apiBody {String} _id     标签自带的id(MongoDB)
+ * @apiBody {String} [name]  标签的名称
+ * @apiBody {String} [color] 标签的颜色
+ * @apiBody {String} [key] 标签的键值
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 描述信息
+ * @apiSuccess {Object} data 返回数据
+ * @apiSuccessExample  {json} success-example
+ * {
+ *   status:200,
+ *   message:"",
+ *   data:[]
+ * }
+ *
+ * @apiError {Number} status 状态码
+ * @apiError {String} message 错误信息
+ * @apiError {Object} data 返回数据
+ * @apiErrorExample  {json} error-example
+ * {
+ *   status:404,
+ *   message:"",
+ *   data:[]
+ * }
+ */
+router.post('/update',(req,res,next) => {
+  const {body:data} = req
+  labelModel.findByIdAndUpdate({
+    id:data.id
+  },{
+    $set:{color:data.color,name:data.name,key:data.key}
+  }).then((result)=>{
+    let resData = {}
+    if(result){
+      resData = {
+        status:200,
+        message:"更新标签数据成功",
+        data:[]
+      }
+    }else{
+      resData = {
+        status:400,
+        message:"更新标签数据失败",
+        data:[]
+      }
+    }
+    res.send(resData)
   })
 })
 
