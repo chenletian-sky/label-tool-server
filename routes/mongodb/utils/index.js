@@ -168,7 +168,8 @@ router.post('/dbSentenceVecScatter', function (req, res, next) {
   // 4. 词云数据保存的表名
   // 5. 聚类的类数
   // 6. 用户的 userEmail
-  // 7. 获取语料数据的 index
+  // 7. 获取语料数据的 key
+  // 8. 获得句子向量的维度
 
 
   const userEmail = req.session.name;
