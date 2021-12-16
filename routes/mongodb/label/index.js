@@ -136,7 +136,7 @@ router.post('/insert',(req,res,next) => {
 router.post('/update',(req,res,next) => {
   const {body:data} = req
   labelModel.findByIdAndUpdate({
-    id:data.id
+    _id:data._id
   },{
     $set:{color:data.color,name:data.name,key:data.key}
   }).then((result)=>{
