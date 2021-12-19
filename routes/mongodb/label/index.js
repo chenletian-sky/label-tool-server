@@ -159,6 +159,60 @@ router.post('/update',(req,res,next) => {
 })
 
 
+/**
+ * @api {delete} /mongo/label/delete 删除标签数据
+ * @apiGroup label
+ * @apiDescription 根据传入的_id(mongo自带)删除标签数据
+ *
+ * @apiBody {String} _id     标签自带的id(MongoDB)
+ * 
+ * @apiSuccess {Number} status 状态码
+ * @apiSuccess {String} message 描述信息
+ * @apiSuccess {Object} data 返回数据
+ * @apiSuccessExample  {json} success-example
+ * {
+ *   status:200,
+ *   message:"",
+ *   data:[]
+ * }
+ *
+ * @apiError {Number} status 状态码
+ * @apiError {String} message 错误信息
+ * @apiError {Object} data 返回数据
+ * @apiErrorExample  {json} error-example
+ * {
+ *   status:404,
+ *   message:"",
+ *   data:[]
+ * }
+ */
+router.delete("/delete",(req,res,next) => {
+  const { _id } = req.body
+  console.log(_id,req.body)
+  labelModel.findOneAndDelete({
+    _id
+  }).then((result) => {
+    let resData = {}
+    if(result){
+
+      resData = {
+        status:200,
+        message:"成功删除标签数据",
+        data:result
+      }
+    }else{
+      resData = {
+        status:400,
+        message:"删除数据失败",
+        data:[]
+      }
+    }
+    res.send(resData)
+  }).catch(error => {
+    console.log(error)
+  })
+})
+
 
 
 

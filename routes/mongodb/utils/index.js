@@ -102,9 +102,10 @@ router.post('/jiaguTrainModel', function (req, res, next) {
   // 2. 训练集的表名
   // 3. 语料数据的表名
   // 4. 保存结果的表名 --> ["pre":[上次的结果],"now":[此次的结果]]
-  // 5. 测试集 的表名
-  // 6. 用户的 userEmail
-  // 7. 语料集的 key
+  // 5. 用户的Email
+  // 6. 语料集的 index
+  // 7. 训练迭代的次数
+  // 8. 每次自迭代的准确率
 
   const userEmail = req.session.name;
   // cp.exec(`"./public/python/jiagu_train_model_three.exe" mongoosedb trainTexts texts xferStations ${userEmail}`,function(err,stdout){
@@ -123,7 +124,7 @@ router.post('/jiaguTrainModel', function (req, res, next) {
       resData = {
         status:200,
         message:"请求成功",
-        data:[]
+        data:[stdout]
       }
       res.send(resData)
     }
