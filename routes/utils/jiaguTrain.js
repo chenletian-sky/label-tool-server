@@ -12,6 +12,7 @@ router.post('/', function (req, res, next) {
   // 5. 保存结果的表名(1)
   // 6. 用户的 userEmail
   // let {} = req.query
+  // console.log("diaoyong")
   const userEmail = req.session.name;
   // cp.exec(`"./public/python/jiagu_train_model_three.exe" mongoosedb trainTexts texts xferStations ${userEmail}`,function(err,stdout){
     cp.exec(`"./public/python/jiagu_train_model.exe" mongoosedb trainTexts texts xferStations ${userEmail}`,function(err,stdout){

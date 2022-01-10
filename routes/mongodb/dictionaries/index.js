@@ -323,4 +323,53 @@ router.post('/update',(req,res,next) => {
   })
 })
 
+const fs = require("fs");
+var { execFile } = require('child_process');
+router.post('/transPdf',(req,res,next)=>{
+  const {body:{data}} = req
+  const buf = Buffer.from(data, 'binary')
+  fs.writeFileSync(String.raw`C:\Users\Administrator\Desktop\label-tool-server\my_pdf.pdf`, buf);
+  // console.log(data)
+  const ocrPath = String.raw`C:\Users\Administrator\Desktop\label-tool-server\ocr`;
+  var as = execFile(`${ocrPath}\\ocr.exe`, [String.raw`C:\Users\Administrator\Desktop\label-tool-server\my_pdf.pdf`], (err,stdout) => {
+    if(err) {
+            console.log(err);
+            return;
+    } 
+    else{
+        console.log("test success");
+
+        //由于进程问题所以放在运行execFile的后面
+        fs.readFile(`${ocrPath}\\result\result.txt`, 'utf-8', (err, data) => {
+            // console.log(data)
+            const sns = data.split("\n")
+            // console.log(sns);
+            const my_data = []
+            sns.forEach((element, i) => {
+                const item = element.replace("\r","")
+                my_data.push(item.replace("\t",""));
+            })
+            // console.log(my_data);
+            res.send({
+              status:200,
+              message:"sucess",
+              data:my_data
+          })
+        });
+    
+        // res.writeHead(200, {
+        //     'Access-Control-Allow-Credentials': 'true',     // 后端允许发送Cookie
+        //     'Access-Control-Allow-Origin': '*',    // 允许访问的域（协议+域名+端口）
+        //     'Set-Cookie': 'l=a123456;Path=/;Domain=www.domain2.com;HttpOnly'  // HttpOnly的作用是让js无法读取cookie
+        // });
+        // res.write("ssss");
+        // res.end();
+    }
+  });
+  as.on('exit', (code) => {
+      console.log("退出")
+  })
+  
+})
+
 module.exports = router;

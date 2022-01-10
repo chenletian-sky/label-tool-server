@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
  * @apiGroup texts
  * @apiDescription 上传语料数据
  *
- * @apiBody {Array} Data 语料数据
+ * @apiBody {Object} Data 语料数据
  * 
  * @apiSuccess {Number} status 状态码
  * @apiSuccess {String} message 描述信息

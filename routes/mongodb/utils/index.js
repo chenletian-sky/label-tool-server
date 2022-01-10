@@ -112,7 +112,7 @@ router.post('/jiaguTrainModel', function (req, res, next) {
 
   const userEmail = req.session.name;
   // cp.exec(`"./public/python/jiagu_train_model_three.exe" mongoosedb trainTexts texts xferStations ${userEmail}`,function(err,stdout){
-    cp.exec(`"./public/python/jiagu_train_model.exe" mongoosedb trainTexts texts xferStations trainTexts 12345678@qq.com ${textsKey} ${numberOfTrainingIterations}`,function(err,stdout){
+    cp.exec(`"./public/python/jiagu_train_model.exe" mongoosedb trainTexts texts xferStations 12345678@qq.com ${textsKey} ${numberOfTrainingIterations}`,function(err,stdout){
     let resData = {}
     if(err){
       console.log("error",err)
@@ -143,8 +143,8 @@ router.post('/jiaguTrainModel', function (req, res, next) {
  * @apiDescription 语料数据 根据 dec2Vec 模型 得到 词云数据 散点图数据 
  * 
  * @apiBody {String} textsKey   语料数据的 key
- * @apiBody {String} numberOfClusters   语料数据的类数
- * @apiBody {String} sentenceVectorDimension   获取句子向量的维度
+ * @apiBody {Number} numberOfClusters   语料数据的类数
+ * @apiBody {Number} sentenceVectorDimension   获取句子向量的维度
  * 
  * @apiSuccess {Number} status 状态码
  * @apiSuccess {String} message 描述信息

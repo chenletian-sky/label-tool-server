@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/ocr
 /public
 /.pnp
 .pnp.js
